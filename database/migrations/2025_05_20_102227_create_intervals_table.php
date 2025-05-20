@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('start')->nullable(false);
             $table->integer('end')->nullable()->default(null);
             $table->timestamps();
+            $table->index(['start', 'end']);
         });
     }
 

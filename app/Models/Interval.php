@@ -19,12 +19,4 @@ class Interval extends Model
         'start',
         'end'
     ];
-    public function toArray()
-    {
-        return [
-            'id' => $this->id,
-            'start' => $this->start,
-            'end' => $this->end
-        ];
-    }
 }

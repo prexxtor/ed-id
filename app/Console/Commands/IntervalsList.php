@@ -40,9 +40,11 @@ class IntervalsList extends Command
             $this->newLine();
         }
 
-        $intersections =  DB::table('intervals')->select('id', 'start', 'end')
-            ->whereBetween('start', [(int)$start, (int)$end])
-            ->orWhereBetween('end', [(int)$start, (int)$end])
+        $intersections = DB::table('intervals')
+           ->select('id', 'start', 'end')
+           ->where(function ($query) use ($start, $end) {
+                $query->where('start', '<=', (int)$end)->where('end', '>=', (int)$start);
+            })
             ->orderBy('id');
 
         $chunk_size = 50;
